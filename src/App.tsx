@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom"
 import Router from "./router/Router"
 import { Container } from "react-bootstrap"
+import Layout from "./layouts/Layout"
 
 function App() {
 
@@ -8,7 +9,9 @@ function App() {
     <>
     <Container>
       <BrowserRouter>
-        <Router />
+        <Layout>
+          <Router />
+        </Layout>
       </BrowserRouter>
     </Container>
     </>
