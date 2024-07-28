@@ -1,20 +1,22 @@
 import { BrowserRouter } from "react-router-dom"
-import Router from "./router/Router"
+import { CartProvider } from "./context/CartContext"
 import { Container } from "react-bootstrap"
+
+import Router from "./router/Router"
 import Layout from "./layouts/Layout"
 
 function App() {
 
   return (
-    <>
-    <Container>
-      <BrowserRouter>
-        <Layout>
-          <Router />
-        </Layout>
-      </BrowserRouter>
-    </Container>
-    </>
+    <CartProvider>
+      <Container>
+        <BrowserRouter>
+          <Layout>
+            <Router />
+          </Layout>
+        </BrowserRouter>
+      </Container>
+    </CartProvider>
   )
 }
 

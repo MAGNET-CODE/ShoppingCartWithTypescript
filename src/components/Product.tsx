@@ -1,4 +1,5 @@
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, useAccordionButton } from 'react-bootstrap'
+import { useCartContext } from '../context/CartContext'
 
 
 type ProductProps = {
@@ -9,7 +10,8 @@ type ProductProps = {
 }
 
 function Product({ id, title, price, imgUrl }: ProductProps) {
-  const qty: number = 1;
+  const { getItemQty, increaseItem, decreaseItem, removeItem } = useCartContext();
+  const qty: number = getItemQty(id);
 
   return (
     <Card className='h-100'>
@@ -26,7 +28,10 @@ function Product({ id, title, price, imgUrl }: ProductProps) {
         </Card.Title>
         <div className='mt-auto'>
           {qty === 0 ? (
-            <Button className="w-100 btn-secondary">
+            <Button 
+              className="w-100 btn-secondary"
+              onClick={() => increaseItem(id)}
+            >
               add to cart
             </Button>
           ) : (
@@ -40,14 +45,14 @@ function Product({ id, title, price, imgUrl }: ProductProps) {
               >
                 <Button 
                   className='btn-secondary' 
-                  // onClick={() => addItem(id)}
+                  onClick={() => increaseItem(id)}
                 >
                   +
                 </Button>
                 <span className='fs-5 m-3 text-light'>{qty}</span>
                 <Button
                   className='btn-secondary'
-                  // onClick={() => decreaseItem(id)}
+                  onClick={() => decreaseItem(id)}
                 >
                   -
                 </Button>
@@ -55,7 +60,7 @@ function Product({ id, title, price, imgUrl }: ProductProps) {
               <Button
                 className='btn-danger'
                 size='sm'
-                // onClick={() => removeItem(id)}
+                onClick={() => removeItem(id)}
               >
                 Remove
               </Button>
