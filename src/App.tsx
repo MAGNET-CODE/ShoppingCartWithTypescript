@@ -1,9 +1,16 @@
+import { BrowserRouter } from "react-router-dom"
+import Router from "./router/Router"
+import { Container } from "react-bootstrap"
 
 function App() {
 
   return (
     <>
-      <h1>Cart</h1>
+    <Container>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </Container>
     </>
   )
 }
