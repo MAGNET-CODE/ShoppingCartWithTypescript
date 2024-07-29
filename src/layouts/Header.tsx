@@ -1,7 +1,10 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
+import { useCartContext } from "../context/CartContext";
 
 function Header() {
+  const { cartQty, openCart, closeCart } = useCartContext();
+
   return (
     <NavbarBs className="bg-dark text-light mb-3">
         <Container className="w-100 d-flex align-items-center justify-content-betvin gap-3">
@@ -16,7 +19,7 @@ function Header() {
                     About
                 </NavLink>
             </Nav>
-            <Button style={{ position: 'relative' }}>
+            <Button onClick={openCart} style={{ position: 'relative' }}>
                 <i className="bi bi-cart"></i>
                 <span 
                     className='rounded-circle bg-danger d-flex justify-content-center align-items-center'
@@ -30,7 +33,7 @@ function Header() {
                         right: 0,
                         transform: 'translate(25%, 25%)',
                     }}
-                >0</span>
+                >{cartQty}</span>
             </Button>
         </Container>
     </NavbarBs>
